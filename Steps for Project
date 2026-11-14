@@ -1,0 +1,37 @@
+FNP Sales Analysis – Project Steps
+1. Data Extraction Using Power Query
+2. Data Understanding and Cleaning
+3. Data Transformation and Processing
+4. Data Loading and Phone Number Validation
+5. Data Modelling Using Power Pivot
+6. Creating Relationships Between Tables
+7. Calculated Columns and Measures Using DAX
+8. Data Analysis Using Pivot Tables
+9. Interactive Executive Dashboard Development
+Brief Description of Each Step
+1. Data Extraction Using Power Query
+Import the Customers, Orders, and Products datasets from the folder into Power Query.
+
+2. Data Understanding and Cleaning
+Understand the business requirements, examine all three datasets, check data types, identify duplicate records, and verify missing or null values.
+
+3. Data Transformation and Processing
+Extract month names and order hours, calculate delivery duration, and merge the Products table with the Orders table to retrieve Unit Price.
+
+4. Data Loading and Phone Number Validation
+Load the transformed datasets into Excel as tables. Validate customer phone numbers using Excel formulas such as TEXT, IF, AND, and LEN.
+
+5. Data Modelling Using Power Pivot
+Add the Customers, Orders, and Products tables to the Excel Data Model using Power Pivot.
+
+6. Creating Relationships Between Tables
+Establish relationships between the three tables using common identifiers and organize the Data Model using a Star Schema.
+
+7. Calculated Columns and Measures Using DAX
+Create calculated columns for Revenue and Order Day. Develop measures for important business metrics such as Total Revenue and Order Count.
+
+8. Data Analysis Using Pivot Tables
+Use Pivot Tables to analyze revenue, delivery time, monthly sales, top products, customer spending, product categories, city-wise orders, and occasion-wise performance.
+
+9. Interactive Executive Dashboard Development
+Create an interactive dashboard using Pivot Charts, KPI cards, slicers, and timelines to present important business insights and sales performance.
