@@ -1,0 +1,163 @@
+3. Excel Dashboard Project
+
+	Problem Statement: Ferns and Petals Sales Analysis
+
+		You have been given a dataset from FNP (Ferns and Petals) that specializes in sending gifts for various occasions like Diwali, Raksha Bandhan, Holi, Valentine's Day, 	Birthdays, and Anniversaries. The dataset contains details about the products, orders, customers, and relevant dates. Your task is to analyze this dataset to uncover key insights 	related to sales trends, customer behavior, and product performance.
+
+	Create a dashboard and answer the following key business questions to help the company
+		improve its sales strategy and optimize customer satisfaction:
+		
+		1. Total Revenue: Identify the overall revenue.
+		2. Average Order and Delivery Time: Evaluate the time taken for orders to be delivered.
+		3. Monthly Sales Performance: Examine how sales fluctuate across the months of 2023.
+		4. Top Products by Revenue: Determine which products are the top revenue generators.
+		5. Customer Spending Analysis: Understand how much customers are spending on average.
+		6. Sales Performance by Top 5 Product: Track the sales performance of top 5 products.
+		7. Top 10 Cities by Number of Orders: Find out which cities are placing the highest number of orders.
+		8. Order Quantity vs. Delivery Time: Analyze if higher order quantities impact delivery times.
+		9. Revenue Comparison Between Occasions: Compare revenue generated across different occasions.
+		10. Product Popularity by Occasion: Identify which products are most popular during specific occasions.
+
+project steps:
+	1. Data Extract(Power Query)
+	2. Data Cleaning(PQE Extract transform)
+	3. Data Transformation()
+	4. Data Modeling(power pivot)
+	5. Data Analysis(Pivot table & Measure)
+	6. Interactive Dashboard(Summary Executive)
+	
+steps description:
+	step 0:
+		get data from folder to power query.
+		then transform data
+
+	Step 1:
+		1. understanding the problem statement and see the questions.
+		2. check the dataset for our requirements and see the dataset. Here we have 3 datasets as Customers, Orders and Products.
+		3. check the 3 datasets and understand the dataset and data.
+
+	Step 2:
+		there is no null values in data.
+		all the cells are complete and unique.
+
+	step 3:
+		Transform Data
+		1. In the customers table there is phone number column that is has invalid number so have to change it we will change it later.
+		2. In the orders table we need to extract order month from orderdate and deliver month from delivery date by adding column 	-> select orderdate column and go to add column and go to date and select name of the month. It will add a column name as name of month.
+		3. after that extract the hour from ordertime and delivertime as hour. and this will two columns. 
+		4. after that find days between orderdate and deliver date by using custom column (deliverdate - orderdate). it will give in days:hour:min:sec format change the using duration tab.
+		5. after that we need unitprice for calculate revenue and unit price is in orders table to extract that column we use merge queries. -> in home tab there is a option for merge queries and after that select another table where we want to extract the unitprice using left in the query. then it will give entire table then from the table only take unitprice column and change it into currency.
+		6. then now click close and load. we can load them all as tables using close and load to.
+
+		load the data for data modeling.
+
+	Step 4:
+		1. lets change the phone numbers and convert them into proper format using formluas.
+		1.1 using text function we converted into text 
+		1.2 using if and AND function we checked number is valid or not.
+
+	step 5:
+		1. now give all the tables into data model.
+		2. first click on the table then go to the power pivot tab then click add data model then do it same for all the tables.
+
+	Step 6:
+		1. now lets create pivot tables.
+		1.1 but in our pivot table all the sum values are same for both gender thats incorrect so our data is wrong may be for that we have to something in our data.
+		1.2 first we have add developer tab on the ribbon bar for that -> go to file click on options -> then customize ribbons and active the developer tab in the left table.
+		1.3 then you can see the developer tab then -> click on developer tab then click com add-ins and make sure Microsoft power pivot for excel in enabled .
+		1.4 then go to data model manage in data tab connect all the three tables in star schema.
+
+	Step 7:
+		1. now create one calcukated for revenue in the data model in there is view data tab in that create one column as revenue.
+		2. now create one column for order day using dax function "format" .(order date , "dddd")
+		3. now lets go to the questions which given by client.
+
+	Step 8:
+		1. Total Revenue: Identify the overall revenue.
+		--> drop the revenue column in values.
+
+		2. Average Order and Delivery Time: Evaluate the time taken for orders to be delivered.
+		--> drop down the days_diffrent_between_order and delivery column in values by default it will give some click on dropdown arrow in values and go to value fields and change the aggregate function as average.
+
+		3. Monthly Sales Performance: Examine how sales fluctuate across the months of 2023.
+		--> drop the month name into rows and revenue into values. sort them in proper order using sort option --> click on dropdown option in header and sort by months name.
+
+		4. Top Products by Revenue: Determine which products are the top revenue generators.
+		--> drop the product name into rows and revenue in values and goto dropdown click on value filters and select top 10.
+
+		5. Customer Spending Analysis: Understand how much customers are spending on average.
+		--> drop the revenue into values it will give sum of revenue convert into avg and change name as customer spending analysis.
+
+		6. Sales Performance by Top 5 Product: Track the sales performance of top 5 products.
+		--> drop the category into rows and revenue into values.
+
+		7. Top 10 Cities by Number of Orders: Find out which cities are placing the highest number of orders.
+		--> drop the city column into rows and order id into values and it will sum then change it to count and goto dropdown and select value filters and select top 10 cities.
+
+		8. Order Quantity vs. Delivery Time: Analyze if higher order quantities impact delivery times.
+		--> check the relation using correlation function on quantity and different between order and deliver days.
+
+		9. Revenue Comparison Between Occasions: Compare revenue generated across different occasions.
+		--> drop occasion column into rows and revenue into values.
+
+		10.  Product Popularity by Occasion: Identify which products are most popular during specific occasions.
+		--> for this create one slicer for the table which is product name and goto insert tab and select slicer and add the slicer from orders table occasions.
+
+	Step 9: Dashboard.
+		
+		in this we created another table as revenue by order hours .
+		created another measure as count of order id.
+
+		1. first chart is column chart for occasion
+		2. second chart is bar chart for revenue by product category.
+		3. third chart is also column chart for revenue by product name.
+		4. fourth chart is line chart for find monthly revenue trend.
+		5. fifth chart is again column chart for orders by cities.
+		6. sixth chart is line chart for revenue by hours. 
+	
+		1. after adding all the charts add slicer too.
+		2. then go to insert and goto shapes select one shape for kpi's.
+		3. then take kpi's from sheet 1 using (=sheet1! and click on the value)
+		4. then click on any chart and goto insert and take timeline for order date and delivery date.
+		5. and now adjust the dashboard.
+		6. hide all the field buttons and remove legends because they are not required.
+		7. now give the title for charts if you want you can give when you create the charts only.
+		8. now connect the slicer with all the charts --> click on slicer and there is option report connector and connect the charts. or you right click on mouse and select report connector
+		8. then go to page layout and select color for your dashboard. 
+
+Key Insights
+
+
+1. Overall Sales Performance: The business recorded 1,000 orders and generated total revenue of ₹35,20,984.
+2. Average Customer Spending: The average revenue per order is approximately ₹3,520.98.
+3. Order Delivery: The average time taken between order placement and delivery is 5.53 days.
+4. Revenue by Occasion: Anniversary contributed the highest revenue, followed by Raksha Bandhan, All Occasions, and Holi. Diwali and Valentine's Day generated comparatively lower revenue.
+5. Revenue by Category: Colors was the highest revenue-generating category, followed by Soft Toys and Sweets. Mugs and Plants contributed comparatively less.
+6. Monthly Revenue Trends: August recorded the highest revenue, followed by February. January, April, and September showed comparatively lower revenue.
+7. City-wise Order Analysis: Imphal, Dhanbad, and Kavali were among the leading cities based on the number of orders.
+8. Revenue by Order Time: Revenue was relatively higher during the evening hours, particularly around 7 PM and 8 PM.
+
+Conclusion
+
+The FNP Sales Analysis project provides an overview of sales performance, revenue distribution, customer spending, and order trends. The analysis highlights the occasions, product categories, months, cities, and order timings that contribute to overall revenue.
+
+The insights can help the business identify high-performing categories, understand seasonal sales patterns, and plan targeted marketing campaigns. Focusing on popular occasions, high-revenue products, and peak purchasing hours could help improve sales performance and business decisions.
+Project Outcome
+
+Through this project, I gained practical experience in Microsoft Excel, including data cleaning, data processing, Pivot Tables, data analysis, chart creation, and interactive dashboard development. It also helped me understand how to convert raw sales data into meaningful business insights.		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
